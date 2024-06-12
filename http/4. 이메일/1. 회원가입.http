@@ -1,6 +1,6 @@
 ## variables
-@email1 = artexi1464.2@gmail.com
-@name = test
+@email1 = helloworld@gmail.com
+@name = helloworld
 @password = helloWorld1234!!!
 
 ### 회원가입
@@ -32,6 +32,6 @@ POST http://localhost:8080/api/user/email-verification
 Content-Type: application/json
 
 {
-  "token": "6464d090-2ea7-4c01-a90e-ad090de3ca46"
+  "token": "8c2f2f00-d1c6-4df5-b883-8214ee9c26a0"
 }
 
