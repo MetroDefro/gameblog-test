@@ -2,10 +2,12 @@ package sparta.gameblog.entity;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.beans.ConstructorProperties;
 import java.util.Set;
 
 @Entity
@@ -28,10 +30,11 @@ public class Post extends Timestamp {
     private Set<Comment> comments;
 
     @Builder
-    public Post(String title, String contents, User user) {
+    public Post(String title, String contents, User user, Set<Comment> comments) {
         this.user = user;
         this.title = title;
         this.contents = contents;
+        this.comments = comments;
     }
 
     public void update(Post post) {
