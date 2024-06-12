@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.0'
     id 'io.spring.dependency-management' version '1.1.5'
+    id 'jacoco'
 }
 
 group = 'sparta'
@@ -45,4 +46,51 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// jacoco report 설정
+jacocoTestReport {
+    reports {
+        html.destination file("$buildDir/jacoco/report.html")
+    }
+
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+// jacoco 커버리지 검증 설정
+jacocoTestCoverageVerification {
+
+    violationRules {
+        rule {
+            enabled = true // 커버리지 적용 여부
+            element = 'CLASS' // 커버리지 적용 단위
+
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.60
+            }
+        }
+    }
+}
+
+// jacoco report 설정
+jacocoTestReport {
+    // 커버리지 보고서 제외 범위 설정
+    getClassDirectories().setFrom(
+            files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        '**/aop',
+                        '**/constants',
+                        '**/exception',
+                        '**/jwt',
+                        '**/mapper',
+                        '**/oauth',
+                        '**/security',
+                        '**/smtp',
+                        '**/*config',
+                        '**/*exception',
+                ])
+            })
+    )
 }
