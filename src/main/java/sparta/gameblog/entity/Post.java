@@ -34,11 +34,6 @@ public class Post extends Timestamp {
         this.contents = contents;
     }
 
-    public void update(String title, String contents) {
-        this.title = title;
-        this.contents = contents;
-    }
-
     public void update(Post post) {
         this.title = post.title;
         this.contents = post.contents;

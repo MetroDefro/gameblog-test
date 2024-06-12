@@ -34,10 +34,6 @@ public class Comment extends Timestamp {
         this.comment = comment;
     }
 
-    public void updateComment(String comment) {
-        this.comment = comment;
-    }
-
     public void setPost(Post post) {
         this.post = post;
     }
