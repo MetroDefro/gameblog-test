@@ -17,21 +17,18 @@ jwt:
 
 
 spring:
+  config.activate.on-profile: default
   application:
     name: GameBlog
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${MYSQL_PASSWORD}
-    url: jdbc:mysql://127.0.0.1:3306/blog_test
+    url: jdbc:mysql://127.0.0.1:3307/blog_test
     username: ${MYSQL_USER}
   jpa:
     hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show-sql: true
-        format_sql: true
-        use_sql_comments: true
+      ddl-auto: create
+    show-sql: true
   mail:
     host: smtp.gmail.com
     password: ${SMTP_APP_PASSWORD}
