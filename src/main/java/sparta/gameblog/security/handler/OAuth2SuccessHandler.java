@@ -1,4 +1,4 @@
-package sparta.gameblog.oauth;
+package sparta.gameblog.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;

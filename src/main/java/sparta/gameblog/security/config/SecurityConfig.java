@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import sparta.gameblog.jwt.JwtUtil;
-import sparta.gameblog.oauth.OAuth2SuccessHandler;
+import sparta.gameblog.security.handler.OAuth2SuccessHandler;
 import sparta.gameblog.security.exception.AccessDeniedHandlerImpl;
 import sparta.gameblog.security.exception.AuthenticationEntryPointImpl;
 import sparta.gameblog.security.filter.JwtAuthenticationFilter;

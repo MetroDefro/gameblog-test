@@ -19,12 +19,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public User getUserByEmailWithSnsInfo(String email) {
-        return this.userRepository.findByEmailWithSnsInfo(email).orElseThrow(
-                () -> new BusinessException(ErrorCode.USER_NOT_FOUND)
-        );
-    }
-
     public User getUserByEmailWithSnsInfo(String email, Supplier<? extends RuntimeException> exceptionSupplier) {
         return this.userRepository.findByEmailWithSnsInfo(email).orElseThrow(exceptionSupplier);
     }
