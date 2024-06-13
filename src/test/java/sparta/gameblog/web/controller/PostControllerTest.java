@@ -20,7 +20,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 import sparta.gameblog.dto.request.PostCreateRequestDto;
-import sparta.gameblog.dto.response.PostGetResponseDto;
+import sparta.gameblog.dto.request.PostPageableRequestDto;
+import sparta.gameblog.dto.response.PostsResponseDto;
 import sparta.gameblog.entity.User;
 import sparta.gameblog.security.config.SecurityConfig;
 import sparta.gameblog.security.principal.UserPrincipal;
@@ -30,10 +31,9 @@ import sparta.gameblog.smtp.service.SmtpService;
 import sparta.gameblog.web.MockSpringSecurityFilter;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -144,6 +144,9 @@ class PostControllerTest {
         // given
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("page", "1");
+
+        PostsResponseDto responseDto = PostsResponseDto.builder().totalElements(100L).page(1).build();
+        when(postService.getPosts(any(PostPageableRequestDto.class))).thenReturn(responseDto);
 
         // when
         ResultActions actions = mockMvc.perform(get("/api/post")
