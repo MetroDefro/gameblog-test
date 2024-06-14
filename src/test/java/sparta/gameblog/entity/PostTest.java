@@ -1,6 +1,7 @@
 package sparta.gameblog.entity;
 
 import com.navercorp.fixturemonkey.FixtureMonkey;
+import com.navercorp.fixturemonkey.api.introspector.BuilderArbitraryIntrospector;
 import com.navercorp.fixturemonkey.api.introspector.ConstructorPropertiesArbitraryIntrospector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class PostTest {
 
     private final FixtureMonkey fixtureMonkey = FixtureMonkey.builder()
-            .objectIntrospector(ConstructorPropertiesArbitraryIntrospector.INSTANCE)
+            .objectIntrospector(BuilderArbitraryIntrospector.INSTANCE)
             .build();
 
     @Test
@@ -23,7 +24,6 @@ class PostTest {
         // given
         Post post = new Post();
         Post post2 = fixtureMonkey.giveMeOne(Post.class);
-                //Post.builder().title("title").contents("contents").build();
 
         // when
         post.update(post2);
@@ -38,8 +38,7 @@ class PostTest {
     void test3() {
         // given
         Comment comment = fixtureMonkey.giveMeOne(Comment.class);
-        Set<Comment> comments = new HashSet<>();
-        Post post = Post.builder().comments(comments).build();
+        Post post = fixtureMonkey.giveMeOne(Post.class);
 
         // when
         post.addComment(comment);

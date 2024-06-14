@@ -7,8 +7,6 @@ import sparta.gameblog.dto.request.CommentCreateRequestDto;
 import sparta.gameblog.dto.request.PostCreateRequestDto;
 import sparta.gameblog.dto.request.UserSignupRequestDto;
 import sparta.gameblog.dto.response.CommentCreateResponseDto;
-import sparta.gameblog.dto.response.PostCreateResponseDto;
-import sparta.gameblog.entity.Post;
 import sparta.gameblog.entity.User;
 import sparta.gameblog.exception.BusinessException;
 import sparta.gameblog.exception.ErrorCode;
@@ -16,7 +14,8 @@ import sparta.gameblog.mapper.CommentMapper;
 import sparta.gameblog.repository.CommentRepository;
 import sparta.gameblog.repository.PostRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

@@ -1,6 +1,7 @@
 package sparta.gameblog.entity;
 
 import com.navercorp.fixturemonkey.FixtureMonkey;
+import com.navercorp.fixturemonkey.api.introspector.BuilderArbitraryIntrospector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,10 @@ class UserTest {
     @DisplayName("updateProfile() 테스트 성공")
     void test1() {
         // given
-        FixtureMonkey fixtureMonkey = FixtureMonkey.create();
+        FixtureMonkey fixtureMonkey = FixtureMonkey.builder()
+                .objectIntrospector(BuilderArbitraryIntrospector.INSTANCE)
+                .build();
+
         User user = new User();
         String name = fixtureMonkey.giveMeOne(String.class);
         String introduction = fixtureMonkey.giveMeOne(String.class);

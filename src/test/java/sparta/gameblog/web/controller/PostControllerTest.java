@@ -2,6 +2,8 @@ package sparta.gameblog.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.navercorp.fixturemonkey.FixtureMonkey;
+import com.navercorp.fixturemonkey.api.introspector.BeanArbitraryIntrospector;
+import com.navercorp.fixturemonkey.api.introspector.BuilderArbitraryIntrospector;
 import com.navercorp.fixturemonkey.api.introspector.ConstructorPropertiesArbitraryIntrospector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -68,9 +70,7 @@ class PostControllerTest {
     @MockBean
     SmtpService smtpService;
 
-    private final FixtureMonkey fixtureMonkey = FixtureMonkey.builder()
-            .objectIntrospector(ConstructorPropertiesArbitraryIntrospector.INSTANCE)
-            .build();
+    private final FixtureMonkey fixtureMonkey = FixtureMonkey.create();
 
     @BeforeEach
     public void setup() {
@@ -102,12 +102,10 @@ class PostControllerTest {
     void testCreatePost() throws Exception {
         // given
         mockUserSetup();
-        PostCreateRequestDto requestDto = new PostCreateRequestDto();
-        requestDto.setTitle("title");
-        requestDto.setContents("contents");
-
-//        PostCreateRequestDto requestDto = fixtureMonkey.giveMeOne(PostCreateRequestDto.class);
-//        System.out.println(requestDto.getContents());
+        PostCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(PostCreateRequestDto.class)
+                .set("title", "title")
+                .set("contents", "contents")
+                .sample();
 
         // when
         ResultActions actions = mockMvc.perform(post("/api/post")
@@ -204,9 +202,10 @@ class PostControllerTest {
     void testUpdatePost() throws Exception {
         // given
         mockUserSetup();
-        PostCreateRequestDto requestDto = new PostCreateRequestDto();
-        requestDto.setTitle("title");
-        requestDto.setContents("contents");
+        PostCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(PostCreateRequestDto.class)
+                .set("title", "title")
+                .set("contents", "contents")
+                .sample();
 
         // when
         ResultActions actions = mockMvc.perform(put("/api/post/1")

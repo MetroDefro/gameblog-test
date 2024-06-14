@@ -1,6 +1,7 @@
 package sparta.gameblog.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -18,7 +19,7 @@ public class SnsInfo {
     @Enumerated(EnumType.STRING)
     private SnsType snsType;
 
-
+    @Builder
     public SnsInfo(SnsType snsType) {
         this.snsType = snsType;
     }

@@ -1,5 +1,6 @@
 package sparta.gameblog.service;
 
+import com.navercorp.fixturemonkey.FixtureMonkey;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,12 +28,6 @@ class PostServiceTest {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private PostRepository postRepository;
-    @Autowired
-    private PostMapper postMapper;
-    @Autowired
-    private FollowService followService;
 
     @Autowired
     private UserService userService;

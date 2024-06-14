@@ -1,6 +1,7 @@
 package sparta.gameblog.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.navercorp.fixturemonkey.FixtureMonkey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,6 +53,8 @@ class CommentControllerTest {
     @MockBean
     CommentService commentService;
 
+    private final FixtureMonkey fixtureMonkey = FixtureMonkey.create();
+
     @BeforeEach
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
@@ -82,8 +85,7 @@ class CommentControllerTest {
     void createComment() throws Exception {
         // given
         mockUserSetup();
-        CommentCreateRequestDto requestDto = new CommentCreateRequestDto();
-        requestDto.setComment("comment");
+        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeOne(CommentCreateRequestDto.class);
 
         // when
         ResultActions actions = mockMvc.perform(post("/api/post/1/comment")
@@ -119,8 +121,7 @@ class CommentControllerTest {
     void updateComment() throws Exception {
         // given
         mockUserSetup();
-        CommentCreateRequestDto requestDto = new CommentCreateRequestDto();
-        requestDto.setComment("comment");
+        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeOne(CommentCreateRequestDto.class);
 
         // when
         ResultActions actions = mockMvc.perform(put("/api/comment/1")
