@@ -103,8 +103,8 @@ class PostControllerTest {
         // given
         mockUserSetup();
         PostCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(PostCreateRequestDto.class)
-                .set("title", "title")
-                .set("contents", "contents")
+                .setNotNull("title")
+                .setNotNull("contents")
                 .sample();
 
         // when
@@ -203,8 +203,8 @@ class PostControllerTest {
         // given
         mockUserSetup();
         PostCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(PostCreateRequestDto.class)
-                .set("title", "title")
-                .set("contents", "contents")
+                .setNotNull("title")
+                .setNotNull("contents")
                 .sample();
 
         // when

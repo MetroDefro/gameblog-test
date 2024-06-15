@@ -85,7 +85,9 @@ class CommentControllerTest {
     void createComment() throws Exception {
         // given
         mockUserSetup();
-        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeOne(CommentCreateRequestDto.class);
+        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(CommentCreateRequestDto.class)
+                .setNotNull("comment")
+                .sample();
 
         // when
         ResultActions actions = mockMvc.perform(post("/api/post/1/comment")
@@ -121,7 +123,9 @@ class CommentControllerTest {
     void updateComment() throws Exception {
         // given
         mockUserSetup();
-        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeOne(CommentCreateRequestDto.class);
+        CommentCreateRequestDto requestDto = fixtureMonkey.giveMeBuilder(CommentCreateRequestDto.class)
+                .setNotNull("comment")
+                .sample();
 
         // when
         ResultActions actions = mockMvc.perform(put("/api/comment/1")
