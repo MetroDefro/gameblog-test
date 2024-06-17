@@ -3,6 +3,7 @@ package sparta.gameblog.service;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sparta.gameblog.MySQLTestContainer;
 import sparta.gameblog.dto.request.CommentCreateRequestDto;
 import sparta.gameblog.dto.request.PostCreateRequestDto;
 import sparta.gameblog.dto.request.UserSignupRequestDto;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CommentServiceTest {
+class CommentServiceTest extends MySQLTestContainer {
 
     @Autowired
     CommentService commentService;

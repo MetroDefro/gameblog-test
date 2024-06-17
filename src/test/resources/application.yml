@@ -11,9 +11,9 @@ spring:
   application:
     name: GameBlog
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
     password: ${MYSQL_PASSWORD}
-    url: jdbc:mysql://127.0.0.1:3307/blog_test
+    url: jdbc:tc:mysql://127.0.0.1:3307/blog_test
     username: ${MYSQL_USER}
   jpa:
     hibernate:

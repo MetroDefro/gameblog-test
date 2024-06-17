@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import sparta.gameblog.MySQLTestContainer;
 import sparta.gameblog.dto.request.UserSignupRequestDto;
 import sparta.gameblog.entity.User;
 import sparta.gameblog.mapper.UserMapper;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class UserServiceTest {
+class UserServiceTest extends MySQLTestContainer {
 
     @Autowired
     UserService userService;

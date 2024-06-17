@@ -1,9 +1,9 @@
 package sparta.gameblog.service;
 
-import com.navercorp.fixturemonkey.FixtureMonkey;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sparta.gameblog.MySQLTestContainer;
 import sparta.gameblog.dto.request.PostCreateRequestDto;
 import sparta.gameblog.dto.request.PostPageableRequestDto;
 import sparta.gameblog.dto.request.PostUpdateRequestDto;
@@ -15,8 +15,6 @@ import sparta.gameblog.dto.response.PostsResponseDto;
 import sparta.gameblog.entity.User;
 import sparta.gameblog.exception.BusinessException;
 import sparta.gameblog.exception.ErrorCode;
-import sparta.gameblog.mapper.PostMapper;
-import sparta.gameblog.repository.PostRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class PostServiceTest {
+class PostServiceTest extends MySQLTestContainer {
 
     @Autowired
     private PostService postService;

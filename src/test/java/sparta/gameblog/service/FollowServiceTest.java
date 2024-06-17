@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import sparta.gameblog.MySQLTestContainer;
 import sparta.gameblog.dto.request.FollowRequestDto;
 import sparta.gameblog.dto.response.FollowResponseDto;
 import sparta.gameblog.entity.Follow;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class FollowServiceTest {
+class FollowServiceTest extends MySQLTestContainer {
 
     @Mock
     FollowRepository followRepository;
